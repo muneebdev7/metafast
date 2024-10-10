@@ -6,7 +6,7 @@ repository_type: pipeline
 template:
   author: Muneeb
   description: faster_metagenome_assemblies
-  force: false
+  force: true
   is_nfcore: true
   name: metafast
   org: nf-core
