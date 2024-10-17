@@ -7,3 +7,7 @@ testing/
 testing*
 *.pyc
 null/pipeline_info
+*.fastq.gz
+*.csv
+null
+out
