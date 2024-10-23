@@ -3,9 +3,18 @@
     IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
+
+include { MULTIQC                } from '../modules/nf-core/multiqc/main'
+include { paramsSummaryMap       } from 'plugin/nf-schema'
+include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
+include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
+include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_metafast_pipeline'
+
+//
+// MODULE: Installed directly from nf-core/modules
+//
 include { FASTQC                 } from '../modules/nf-core/fastqc/main'
 include { FASTP                  } from '../modules/nf-core/fastp/main'
-include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { MEGAHIT                } from '../modules/nf-core/megahit/main'
 include { BWA_MEM                } from '../modules/nf-core/bwa/mem/main'
 include { SAMTOOLS_SORT          } from '../modules/nf-core/samtools/sort/main'
@@ -13,10 +22,6 @@ include { SAMTOOLS_INDEX         } from '../modules/nf-core/samtools/index/main'
 include { BWA_INDEX              } from '../modules/nf-core/bwa/index/main'
 include { METABAT2_JGISUMMARIZEBAMCONTIGDEPTHS } from '../modules/nf-core/metabat2/jgisummarizebamcontigdepths/main'
 include { METABAT2_METABAT2      } from '../modules/nf-core/metabat2/metabat2/main'
-include { paramsSummaryMap       } from 'plugin/nf-schema'
-include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
-include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
-include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_metafast_pipeline'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
