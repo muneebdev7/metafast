@@ -15,7 +15,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { METAFAST  } from './workflows/metafast'
+include { METAFAST  } from './workflows/wf'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_metafast_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_metafast_pipeline'
 include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_metafast_pipeline'
@@ -76,7 +76,7 @@ workflow {
         params.outdir,
         params.input
     )
-    
+
     //
     // WORKFLOW: Run main workflow
     //

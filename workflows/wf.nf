@@ -11,7 +11,7 @@ include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pi
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_metafast_pipeline'
 
 //
-// MODULE: Installed directly from nf-core/modules
+// MODULES: Installed directly from nf-core/modules
 //
 include { FASTQC                 } from '../modules/nf-core/fastqc/main'
 include { FASTP                  } from '../modules/nf-core/fastp/main'
@@ -74,10 +74,23 @@ workflow METAFAST {
     //
     // MODULE: Run MEGAHIT for assembly
     //
+    // Prepare FASTP output for MEGAHIT input
+    ch_megahit_input = FASTP.out.reads.map { meta, reads ->
+        def reads1 = meta.single_end ? reads : reads[0]
+        def reads2 = meta.single_end ? [] : reads[1]
+        [meta, reads1, reads2]
+    }
+
     MEGAHIT (
-        FASTP.out.reads
+        ch_megahit_input
     )
     ch_versions = ch_versions.mix(MEGAHIT.out.versions.first())
+
+    // Prepare assembled contigs for downstream analysis
+    ch_assemblies = MEGAHIT.out.contigs.map { meta, contigs ->
+        [meta + [assembler: 'megahit'], contigs]
+    }
+
 /*
     //
     // MODULE: Index the assembled contigs with BWA
@@ -182,6 +195,7 @@ workflow METAFAST {
     )
 
     emit:
+    assemblies     = ch_assemblies
     multiqc_report = MULTIQC.out.report.toList() // channel: /path/to/multiqc_report.html
     versions       = ch_versions                 // channel: [ path(versions.yml) ]
 }
