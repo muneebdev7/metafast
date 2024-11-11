@@ -9,9 +9,3 @@ testing*
 null/pipeline_info
 *.fastq.gz
 *.csv
-null
-out
-test
-test1
-work
-true

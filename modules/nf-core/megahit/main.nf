@@ -1,6 +1,6 @@
 process MEGAHIT {
     tag "${meta.id}"
-    label 'process_low'
+    label 'process_high'
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'oras://community.wave.seqera.io/library/megahit_pigz:657d77006ae5f222' :
