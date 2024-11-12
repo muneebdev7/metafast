@@ -16,7 +16,7 @@
 
 ## Introduction
 
-**nf-core/metafast** is a bioinformatics pipeline that ...
+**nf-core/metafast** is a bioinformatics pipeline that:
 
 <!-- TODO nf-core:
    Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
@@ -29,9 +29,10 @@
 <!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->
 
 1. Read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
-2. Preprocess the raw reads (FastP)
-3. Assemble the raw reads into contigs (MEGAHIT)
-4. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+2. Preprocess the raw reads ([`fastp`](https://github.com/OpenGene/fastp))
+3. Assemble the raw reads into contigs ([`MEGAHIT`](https://github.com/voutcn/megahit))
+4. Perform reads alignment to the assembled contigs ([`bwa mem`](https://bio-bwa.sourceforge.net/))
+5. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
 
 ## Usage
 
